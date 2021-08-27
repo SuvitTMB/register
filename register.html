@@ -33,9 +33,8 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-<!--
+
 	<script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
--->
 	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
 
@@ -295,28 +294,8 @@
   var Eid = "";
   var aStatusConfirm = 0;
   var aStatusEdit = 0;
-  //var alineID = "";
-  //var aPicture = "";
-  //var aLinename = "";
-  //var aStatusPass = 0;
   var sGroupReg = "Prudentital";
   var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
-
-/*
-  var alineID = "Ua6b6bf745bd9bfd01a180de1a05c23b3";
-  var aLinename = "Website";
-  var aPicture = "https://profile.line-scdn.net/0hoLlg-mNNMGNRHiaTpMdPNG1bPg4mMDYrKX8qVnIYOgYpe3QwbCp2AXVKaVN_fnMzOC16V3NMagF8";
-*/
-
-  //var dateString = timeSolver.getString(new Date(), "YYYY/MM/DD HH:MM:SS.SSS")
-  //console.log(dateString);
-  //if(aStatusEdit==0) {
-  //document.getElementById('fname').disabled = false;
-  //document.getElementById('empid').disabled = false;
-  //} else if(aStatusEdit!=0) {
-  //  document.getElementById('fname').disabled = true;
-  //  document.getElementById('empid').disabled = true;
-  //}
 
 
 
@@ -328,7 +307,7 @@
   document.getElementById("displayName1").append(sessionStorage.getItem("LineName"));
 
 
-/*
+
   async function main() {
     await liff.init({ liffId: "1655966947-m8nNr7OQ" });
     document.getElementById("isLoggedIn").append(liff.isLoggedIn());
@@ -357,11 +336,6 @@
     //sessionStorage.setItem("EmpName", sEmpName);
     //sessionStorage.setItem("EmpID", sEmpID);
     //sessionStorage.setItem("EmpBR", sEmpBr);
-  
-
-    //alineID = profile.userId;
-    //aLinename = profile.displayName;
-    //aPicture = profile.pictureUrl;
   }
 
 
@@ -371,9 +345,6 @@
       external: true     
     })
   }
-*/
-
-
 
 
   var firebaseConfig = {
@@ -440,11 +411,7 @@
         //aStatusPass = doc.data().statuspass;
         //aStatusConfirm = doc.data().statusconfirm;
         //aStatusEdit = doc.data().statusedit;
-/*
-        document.getElementById('CheckLogin').style.display='none';
-        document.getElementById('CheckProfile').style.display='block';
-        document.getElementById('DisplayList').style.display='none';
-*/
+
         document.getElementById("empid").value = doc.data().empID;
         document.getElementById("fname").value = doc.data().empName;
         document.getElementById("phone").value = doc.data().empPhone;
