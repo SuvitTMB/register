@@ -297,16 +297,6 @@
   var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 
 
-/*
-  document.getElementById('fname').disabled = false;
-  document.getElementById('empid').disabled = false;
-  document.getElementById("pictureUrl").src = sessionStorage.getItem("LinePicture");
-  document.getElementById("pictureUrl1").src = sessionStorage.getItem("LinePicture");
-  document.getElementById("displayName").append(sessionStorage.getItem("LineName"));
-  document.getElementById("displayName1").append(sessionStorage.getItem("LineName"));
-*/
-
-
   async function main() {
     await liff.init({ liffId: "1655966947-8DgrpDq6" });
     document.getElementById("isLoggedIn").append(liff.isLoggedIn());
@@ -330,6 +320,7 @@
     sessionStorage.setItem("LineID", profile.userId);
     sessionStorage.setItem("LineName", profile.displayName);
     sessionStorage.setItem("LinePicture", profile.pictureUrl);
+    ReadData();
   }
 
 
