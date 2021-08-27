@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>LINE Retail Society</title>
+	<meta charset="utf-8">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+	<!-- End Google Tag Manager -->
+
+	<!-- Favicons -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <link href='css/app.css' rel="stylesheet" type="text/css">
+<!--
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+-->
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #f7f7f7;">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="register.html">Retail Society</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="team" class="team section-bg">
+      <div class="container" id="CheckLogin">
+        <div class="section-title" data-aos="fade-up" style="margin-top:10px;">
+          <div style="color:#0056ff;font-size:18px;margin-top:-20px;">LINE Retail Society</div>
+          <div style="padding:15px 0px 15px 0px;">
+            <center>
+              <div style="margin-top:60px;font-size: 16px;color:#000000;font-weight: 600;">จำนวนผู้เข้าร่วมงาน</div>
+              <!--<div style="margin-top:10px;font-size: 17px;font-weight: 600;color:#0056ff;">ULTIMATE PRIDE</div>-->
+              <div style="margin-top:0px;font-size: 12px;font-weight: 600;color:#0056ff;">10 กันยายน 2564 เวลา 18:00-21:00 น.</div>
+
+
+              <div id="DisplayReg" style="margin-top:-10px;font-size: 70px;color:#0056ff;font-weight: 600;"></div>
+              <div id="DisplayRatio" style="margin-top:-15px; color:#000;margin-bottom: 30px;"></div>
+
+
+              <div class="container" id="ViewQRcode" style="background:#ffffff;margin-bottom: 10px;width:100%;border-radius: 15px;">
+                <div class="section-title" data-aos="fade-up">
+                  <center>
+                    <div style="width:100%;margin:0 auto;padding-top:15px;">
+                      <div id="chart_div"></div>
+                    </div>
+                  </center>
+                </div>
+              </div>
+
+              <div class="clr"></div>
+              <div class="btn-t1" onclick="GotoHome()">Home</div>
+              <div class="clr" style="height:50"></div>
+
+            </center>
+          </div>
+
+        </div>
+      </div>
+
+
+    </section>
+  </main>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Template Main JS File 
+  <script src="js/config.js"></script>-->
+
+<script type="text/javascript">
+
+  var CountIN = 0;
+  var MaxTime = 0;
+
+  var CheckRegister = 0;
+  var aRH1 = 60;
+  var aRH2 = 65;
+  var aRH3 = 55;
+  var aRH4 = 49;
+  var aRH5 = 73;
+  var aRH6 = 66;
+  var aRH7 = 54;
+  var aRH0 = 0;
+  var sSumEmp = 422;
+    
+  var eRH1 = 0;
+  var eRH2 = 0;
+  var eRH3 = 0;
+  var eRH4 = 0;
+  var eRH5 = 0;
+  var eRH6 = 0;
+  var eRH7 = 0;
+  var eRH0 = 0;
+  var sGroupReg = "Prudentital";
+
+  google.charts.load('current', {packages: ['corechart', 'bar']});
+  google.charts.setOnLoadCallback(drawStacked);
+
+  //$(document).ready(function () {
+  //CheckUpdate();
+    //drawStacked();
+  //});
+
+  var firebaseConfig = {
+    apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+    authDomain: "retailproject-6f4fc.firebaseapp.com",
+    projectId: "retailproject-6f4fc",
+    storageBucket: "retailproject-6f4fc.appspot.com",
+    messagingSenderId: "653667385625",
+    appId: "1:653667385625:web:a5aed08500de80839f0588",
+    measurementId: "G-9SKTRHHSW9"
+  };
+
+  firebase.initializeApp(firebaseConfig);
+  var db = firebase.firestore().collection("CheckProfile");
+  CheckUpdate();
+
+  var sEmpBr = "BBD";
+  function CheckUpdate() {
+    //db.where('GroupReg','==',sGroupReg && 'empBr','==',sEmpBr)
+    db.where('GroupReg','==',sGroupReg)
+    .orderBy('empRH','asc')
+    .get().then((snapshot)=> {
+      snapshot.forEach(doc=> {
+        //CheckRegister = CheckRegister+1;
+        ShowGetData(doc);
+      });
+    });
+    timecountdown();
+  }
+
+
+function ShowGetData(doc) {
+  if(doc.data().empRH=="RH1") {
+    eRH1 = eRH1+1;
+    CheckRegister = CheckRegister+1;
+  } else if(doc.data().empRH=="RH2") { 
+    eRH2 = eRH2+1;
+    CheckRegister = CheckRegister+1;
+  } else if(doc.data().empRH=="RH3") { 
+    eRH3 = eRH3+1;
+    CheckRegister = CheckRegister+1;
+  } else if(doc.data().empRH=="RH4") { 
+    eRH4 = eRH4+1;
+    CheckRegister = CheckRegister+1;
+  } else if(doc.data().empRH=="RH5") { 
+    eRH5 = eRH5+1;
+    CheckRegister = CheckRegister+1;
+  } else if(doc.data().empRH=="RH6") { 
+    eRH6 = eRH6+1;
+    CheckRegister = CheckRegister+1;
+  } else if(doc.data().empRH=="RH7") { 
+    eRH7 = eRH7+1;
+    CheckRegister = CheckRegister+1;
+  } else if(doc.data().empRH=="Oth") { 
+    eRH0 = eRH0+1;
+    CheckRegister = CheckRegister+1;
+  } 
+}
+
+
+
+  function timecountdown() {
+    var sRatio = (CheckRegister/(sSumEmp+eRH0)*100);
+    document.getElementById("DisplayReg").innerHTML = CheckRegister ;
+    document.getElementById("DisplayRatio").innerHTML = "(หรือคิดเป็น <b>"+parseFloat(sRatio).toFixed(2)+"%<b>)" ;
+    //$("#DisplayReg").html(CheckRegister);
+    //alert(CheckRegister);
+    //document.getElementById("#DisplayRegister").append(CheckRegister);
+    var timeleft = MaxTime;
+      qInterval = setInterval(function(){
+      if(timeleft <= 0) {
+        stopcountdown();
+        CheckUpdate();
+        drawStacked();
+        eRH1 = 0;
+        eRH2 = 0;
+        eRH3 = 0;
+        eRH4 = 0;
+        eRH5 = 0;
+        eRH6 = 0;
+        eRH7 = 0;
+        eRH0 = 0;
+        CheckRegister = 0;
+      }
+      },10000);
+  }
+
+
+  function stopcountdown() { 
+      clearInterval(qInterval);
+  }
+
+
+  function drawStacked() {
+    //alert(CheckRegister);
+    var data = google.visualization.arrayToDataTable([
+      ['BBD', 'Register', 'Employee', { role: 'annotation' } ],
+      ['RH-1', eRH1, (aRH1-eRH1), ''],
+      ['RH-2', eRH2, (aRH2-eRH2), ''],
+      ['RH-3', eRH3, (aRH3-eRH3), ''],
+      ['RH-4', eRH4, (aRH4-eRH4), ''],
+      ['RH-5', eRH5, (aRH5-eRH5), ''],
+      ['RH-6', eRH6, (aRH6-eRH6), ''],
+      ['RH-7', eRH7, (aRH7-eRH7), ''],
+      ['Oth', eRH0, '', '']
+    ]);
+
+    var options = {
+      //width: 400,
+      height: 350,
+      legend: { position: 'top', maxLines: 3 },
+      bar: { groupWidth: '85%' },
+      isStacked: true,
+      colors: ['#0056ff', '#ccc']
+    };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+
+  function GotoHome() {
+    location.href = "register.html";
+  }
+
+
+   </script>
+
+</body>
+</html>

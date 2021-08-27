@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>LINE Retail Society</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <link href='css/bento.css' rel="stylesheet" type="text/css">
+  <link href='css/bento.css' rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+
+<!--
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.8.1/sdk.js"></script>
+-->
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+<style>
+.list {
+}
+.list-element {
+    display: none;
+}
+.list .list-element:nth-child(1) {
+    display: block;
+}
+.list .list-element:nth-child(2) {
+    display: block;
+}
+.list .list-element:nth-child(3) {
+    display: block;
+}
+.list .list-element:nth-child(4) {
+    display: block;
+}
+.list .list-element:nth-child(5) {
+    display: block;
+}
+.list .list-element:nth-child(6) {
+    display: block;
+}
+.list .list-element:nth-child(7) {
+    display: block;
+}
+.list .list-element:nth-child(8) {
+    display: block;
+}
+.notify {
+  position: fixed;
+  top: 50px;
+  width: 100%;
+  height: 0;
+  box-sizing: border-box;
+  color: white;
+  text-align: center;
+  background: #f68b1f;
+  overflow: hidden;
+  box-sizing: border-box;
+  -webkit-transition: all ease 0.4s;
+  -moz-transition: all ease 0.4s;
+  -ms-transition: all ease 0.4s;
+  -o-transition: all ease 0.4s;
+  transition: all ease 0.4s;
+}
+
+#notifyType:before {
+  display: block;
+  margin-top: 15px;
+}
+
+.notify.active {
+  height: 50px;
+}
+
+.success:before {
+  content: "มีข้อความใหม่";
+}
+
+</style>
+
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+  <div class="navbar1" style="height: 90px;background: none;">
+    <div class="msb-reply">
+      <div style="background:#479eff;width:100%">
+<!--
+        <div style="width:85%;float: left;"><textarea id="TextMamo" placeholder="พิมพ์ข้อความของคุณที่นี่..."></textarea></div>
+        <div style="width:15%;float: left;"><button style="background: #479eff;" onclick="CheckMemo()"><i class="fa fa-paper-plane-o" style="position: absolute; top:20px;left:17px;"></i></button></div>
+-->
+
+        <textarea id="TextMamo" placeholder="พิมพ์ข้อความของคุณที่นี่..."></textarea>
+        <button style="background: #479eff;" onclick="CheckMemo()"><i class="fa fa-paper-plane-o" style="position: absolute; top:20px;left:17px;"></i></button>
+      </div>
+    </div>
+  </div>
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="register.html">Retail Society</a>
+      </div>
+    </div>
+  </nav>
+
+<div class="container-max" style="background-color: #f9fcff;">
+  <div class="ldp carousel-inner">
+    <div style="max-height:300px;position: relative;text-align: center;">
+      <img src="./img/tiktok-talk.gif" class="ldp_img">
+      <div class="Centered-mom">เพื่อน ๆ พนักงานสามารถร่วมชื่นชมผู้ได้รับรางวัลได้ที่นี่ ...</div>
+    </div>
+  </div>
+  <div class="notify"><span id="notifyType" class=""></span></div>
+  <div class="container bootstrap snippets bootdey">
+    <div class="tile tile-alt" id="messages-main">
+      <div class="message-feed media" style="margin-top:-40px;margin-bottom: 40px;">
+        <div id="DisplayMemo" class="list"></div>
+        <!--<button id="loadmore">Load More...</button>-->
+        <div class="clr" height="40px;"></div>
+        <div style="width:280px;margin:auto;">
+          <center>
+            <div id="btn-1" class="btn-t2" onclick="window.location.href='register.html';" style="float: left;">หน้าแรก</div>
+            <div id="loadmore" class="btn-t1" style="float: left;">Load More...</div>
+          </center>
+        </div>
+        <div class="clr" height="50px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="clr" style="height: 50px"></div>
+<script src="./js/qa.js?v=0004"></script>
+
+<!--
+<script src="./js/config.js"></script>
+-->
+
+</body>
+</html>

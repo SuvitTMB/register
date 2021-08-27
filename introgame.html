@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- Theme Made By www.w3schools.com -->
+  <title>LINE Retail Society</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/app.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+
+</head>
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #0016ed;">
+
+<!--
+<div class="navbar1">
+  <center><div class="btn-t2" onclick="location.href='intro.html'">กลับไปหน้าแรก</div></center>
+</div>
+-->
+
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="#myPage" onclick="location.href='register.html'">Retail Society</a>
+    </div>
+  </div>
+</nav>
+
+
+  <div id="myCarousel" class="carousel slide text-center" data-ride="carousel">
+    <div class="header-line">เกมส์วัดดวง</div> 
+    <div style="margin-top:25px;">
+      <div style="margin-top:40px;"><img id="pictureUrl" class="imgprofile"></div>
+      <div style="color:#ffffff;font-weight: 700; font-size:16px;margin-top:12px;"><p id="displayName"></p></div>
+    </div>
+
+    <div id="loading" style="margin-top:30px;text-align: center;"><img src="./img/loading1.gif"></div>
+
+    <div id="CheckScore" style="display:none;">
+      <div class="box-msgtext" style="font-size: 12px;">
+        <div style="padding:10px;font-weight: 600;width:100%;">กติกาการแข่งขัน</div>
+        <div class="box-text1">1.</div>
+        <div class="box-text2">ผู้เข้าแข่งขันสามารถเข้าทำการแข่งขันได้เพียง 1 ครั้งเท่านั้น</div>
+        <div class="box-text1">2.</div>
+        <div class="box-text2">เกมส์นี้เป็นเกมส์ทายตัวเลขน้อยกว่า เท่ากับ หรือมากกว่า</div>
+        <div class="box-text1">3.</div>
+        <div class="box-text2">ถ้าทายผลถูกได้รับ 1 คะแนน และสามารถเลือกทายตัวเลขต่อไปได้</div>
+        <div class="box-text1">4.</div>
+        <div class="box-text2">กรณีตอบผิดเกมส์การแข่งขันสิ้นสุด ได้คะแนนตามที่ทำได้</div>
+        <div class="box-text1">5.</div>
+        <div class="box-text2">ผู้แข่งขันสามารถเลือก น้อยกว่า เท่ากับ หรือมากกว่า ได้</div>
+        <div class="box-text1">6.</div>
+        <div class="box-text2">กรณีเลือกตอบเท่ากับ และถูกต้องได้รับคะแนนเพิ่ม 3 คะแนน</div>
+        <div class="box-text1">7.</div>
+        <div class="box-text2">ผู้ที่สามารถทำคะแนนสูงสุด xxx อันดับแรก รับรางวัลพิเศษ</div>
+        <div class="box-text1">8.</div>
+        <div class="box-text2">กรณีที่คะแนนเท่ากันจะใช้วิธีการสุ่มจับรางวัล</div>
+        <div class="box-text1">9.</div>
+        <div class="box-text2">ถ้าพร้อมที่จะเข้าแข่งขันแล้วกด "<b>เริ่มการแข่งขัน</b>"</div>
+      </div>
+      <div class="btn-t1" style="margin-top:5px;" onclick="location.href='register.html'">กลับไปเมนูหลัก</div>
+      <div class="btn-t1" style="margin-top:5px;" onclick="location.href='tgame.html'">ซ้อมมือกันก่อนแข่งจริง</div>
+      <br>
+      <div class="btn-t2" style="margin-top:5px;margin-top:40px;" onclick="location.href='game.html'">เข้าสู่การแข่งขัน</div>
+      <div style="font-size: 12px; color:#fff; padding-top:8px;">เมื่อเข้าสู่การแข่งขันแล้ว ถ้าคุณออกจากเกมส์คุณจะได้ 0 คะแนน</div>
+    </div>
+
+    <div id="ShowScore" style="font-size: 12px;display:none;">
+      <div id="DisplayScore" class="gameNumber"></div>
+      <div style="font-size: 12px;text-align: center; color:#fff;">คะแนนที่คุณทำได้</div>
+      <div class="clr" style="height:30px;"></div>
+      <div class="btn-t1" style="margin-top:5px;" onclick="location.href='register.html'">กลับไปเมนูหลัก</div>
+      <div class="btn-t2" style="margin-top:5px;" onclick="location.href='showrank.html'">ดูตารางคะแนน</div>
+    </div>
+    <div style="height: 40px;"></div>
+  </div>
+
+
+<script src="./js/introgame.js"></script>
+
+
+</body>
+</html>
