@@ -79,7 +79,19 @@
               </div>
 
               <div class="clr"></div>
-              <div class="btn-t1" onclick="GotoHome()">Home</div>
+              <div class="container" id="ViewQRcode" style="background:#ffffff;margin-bottom: 10px;width:100%;border-radius: 15px;">
+                <div class="section-title" data-aos="fade-up">
+                  <center>
+                    <div style="width:100%;margin:0 auto;padding-top:15px;">
+                      <div id="top_x_div"></div>
+                    </div>
+                  </center>
+                </div>
+              </div>
+
+
+              <div class="clr"></div>
+              <div class="btn-t1" onclick="GotoHome()">กลับหน้าแรก</div>
               <div class="clr" style="height:50"></div>
 
             </center>
@@ -100,6 +112,13 @@
 
   var CountIN = 0;
   var MaxTime = 0;
+
+  var eBR1 = 0;
+  var eBR2 = 0;
+  var eBR3 = 0;
+  var eBR4 = 0;
+  var eBR5 = 0;
+  var eBR6 = 0;
 
   var CheckRegister = 0;
   var aRH1 = 102;
@@ -125,6 +144,9 @@
   google.charts.load('current', {packages: ['corechart', 'bar']});
   google.charts.setOnLoadCallback(drawStacked);
 
+  google.charts.load('current', {'packages':['bar']});
+  google.charts.setOnLoadCallback(drawStuff);
+
   //$(document).ready(function () {
   //CheckUpdate();
     //drawStacked();
@@ -143,6 +165,7 @@
   firebase.initializeApp(firebaseConfig);
   var db = firebase.firestore().collection("CheckProfile");
   CheckUpdate();
+  //drawStuff();
 
   var sEmpBr = "BBD";
   function CheckUpdate() {
@@ -185,8 +208,21 @@ function ShowGetData(doc) {
     eRH0 = eRH0+1;
     CheckRegister = CheckRegister+1;
   } 
-}
 
+  if(doc.data().empBr=="BBD") {
+    eBR1 = eBR1+1;
+  } if(doc.data().empBr=="RASC") {
+    eBR2 = eBR2+1;
+  } if(doc.data().empBr=="PRODUCT") {
+    eBR3 = eBR3+1;
+  } if(doc.data().empBr=="OCSE") {
+    eBR4 = eBR4+1;
+  } if(doc.data().empBr=="CHIEF") {
+    eBR5 = eBR5+1;
+  } if(doc.data().empBr=="Other") {
+    eBR6 = eBR6+1;
+  }
+}
 
 
   function timecountdown() {
@@ -202,6 +238,7 @@ function ShowGetData(doc) {
         stopcountdown();
         CheckUpdate();
         drawStacked();
+        drawStuff();
         eRH1 = 0;
         eRH2 = 0;
         eRH3 = 0;
@@ -211,6 +248,12 @@ function ShowGetData(doc) {
         eRH7 = 0;
         eRH0 = 0;
         CheckRegister = 0;
+        eBR1 = 0;
+        eBR2 = 0;
+        eBR3 = 0;
+        eBR4 = 0;
+        eBR5 = 0;
+        eBR6 = 0;
       }
       },10000);
   }
@@ -222,7 +265,6 @@ function ShowGetData(doc) {
 
 
   function drawStacked() {
-    //alert(CheckRegister);
     var data = google.visualization.arrayToDataTable([
       ['BBD', 'Register', 'Employee', { role: 'annotation' } ],
       ['RH-1', eRH1, (aRH1-eRH1), ''],
@@ -234,7 +276,6 @@ function ShowGetData(doc) {
       ['RH-7', eRH7, (aRH7-eRH7), ''],
       ['Oth', eRH0, '', '']
     ]);
-
     var options = {
       //width: 400,
       height: 350,
@@ -243,7 +284,6 @@ function ShowGetData(doc) {
       isStacked: true,
       colors: ['#0056ff', '#ccc']
     };
-
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
     chart.draw(data, options);
   }
@@ -251,6 +291,37 @@ function ShowGetData(doc) {
   function GotoHome() {
     location.href = "register.html";
   }
+
+
+  function drawStuff() {
+    var data = new google.visualization.arrayToDataTable([
+      ['Team', 'Register'],
+      ["BBD", eBR1],
+      ["RASC", eBR2],
+      ["PRODUCT", eBR3],
+      ["OCSE", eBR4],
+      ["CHIEF", eBR5],
+      ['Other', eBR6]
+    ]);
+    var options = {
+      title: 'Register',
+      //width: 370,
+      height: 250,
+      legend: { position: 'none' },
+      //chart: { title: 'Chess opening moves',
+      //         subtitle: 'popularity by percentage' },
+      bars: 'horizontal', // Required for Material Bar Charts.
+      axes: {
+        x: {
+          0: { side: 'top', label: 'Employee'} // Top x-axis.
+        }
+      },
+      bar: { groupWidth: "100%" }
+    };
+    var chart = new google.charts.Bar(document.getElementById('top_x_div'));
+    chart.draw(data, options);
+  };  
+
 
 
    </script>
