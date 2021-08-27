@@ -33,7 +33,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
-
 	<script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
@@ -298,14 +297,14 @@
   var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
 
 
-
+/*
   document.getElementById('fname').disabled = false;
   document.getElementById('empid').disabled = false;
   document.getElementById("pictureUrl").src = sessionStorage.getItem("LinePicture");
   document.getElementById("pictureUrl1").src = sessionStorage.getItem("LinePicture");
   document.getElementById("displayName").append(sessionStorage.getItem("LineName"));
   document.getElementById("displayName1").append(sessionStorage.getItem("LineName"));
-
+*/
 
 
   async function main() {
@@ -327,15 +326,10 @@
     document.getElementById("userId").append(profile.userId);
     document.getElementById("displayName").append(profile.displayName);
     document.getElementById("displayName1").append(profile.displayName);
-
-
     sessionStorage.setItem("LineLogin", profile.userId);
     sessionStorage.setItem("LineID", profile.userId);
     sessionStorage.setItem("LineName", profile.displayName);
     sessionStorage.setItem("LinePicture", profile.pictureUrl);
-    //sessionStorage.setItem("EmpName", sEmpName);
-    //sessionStorage.setItem("EmpID", sEmpID);
-    //sessionStorage.setItem("EmpBR", sEmpBr);
   }
 
 
@@ -359,26 +353,18 @@
 
   firebase.initializeApp(firebaseConfig);
   var db = firebase.firestore().collection("CheckProfile");
-  //document.getElementById('CheckLogin').style.display='block';
-  //document.getElementById('CheckProfile').style.display='none';
-  //document.getElementById('DisplayList').style.display='none';
-  //document.getElementById('CheckLockUser').style.display='none';
-
 
   function ClickAgenda() {
-    //document.getElementById('CheckLogin').style.display='none';
     document.getElementById('ViewAgenda').style.display='block';
   }
 
 
   function ClickQRcode() {
-    //document.getElementById('CheckLogin').style.display='none';
     document.getElementById('ViewQRcode').style.display='block';
   }
 
 
   function ClickSurvey() {
-    //document.getElementById('CheckLogin').style.display='none';
     document.getElementById('ViewSurvey').style.display='block';
   }
 
@@ -386,32 +372,25 @@
 
 
 	function ClickCheckLogin() {
-    //document.getElementById('UserNoReg').style.display='block';
 		document.getElementById('CheckProfile').style.display='block';
     document.getElementById('CheckLogin').style.display='none';
     document.getElementById('ViewAgenda').style.display='none';
     document.getElementById('ViewQRcode').style.display='none';
     document.getElementById('ViewSurvey').style.display='none';
-    //document.getElementById('DisplayList').style.display='none';
 		ReadData();
 	}
   ReadData();
 
-  //aStatusPass = 9;
+
   function ReadData() {
     //alert(alineID);
     db.where('lineID','==',sessionStorage.getItem("LineID"))
-    //.where('GroupReg','==',sGroupReg)
     .get().then((snapshot)=> {
       snapshot.forEach(doc=> {
         sessionStorage.setItem("EmpID", doc.data().empID);
         sessionStorage.setItem("EmpName", doc.data().empName);
         sessionStorage.setItem("EmpBR", doc.data().empBr);
         sessionStorage.setItem("EmpRH", doc.data().empRH);
-        //aStatusPass = doc.data().statuspass;
-        //aStatusConfirm = doc.data().statusconfirm;
-        //aStatusEdit = doc.data().statusedit;
-
         document.getElementById("empid").value = doc.data().empID;
         document.getElementById("fname").value = doc.data().empName;
         document.getElementById("phone").value = doc.data().empPhone;
@@ -420,37 +399,22 @@
         document.getElementById("address").value = doc.data().empAddress;
         var ShowRegister = "เมื่อวันที่ : "+doc.data().RegisterDate;
         $("#RegisterDate").html(ShowRegister);
-        //document.getElementById("RegisterDate").html(ShowRegister);
-
-
-        //alert(doc.data().empBr);
-        //if(aStatusEdit!=2) {
-	      //  document.getElementById('fname').disabled = false;
-	      //  document.getElementById('empid').disabled = false;
-        //} else if(aStatusEdit==2) {
-	      //  document.getElementById('fname').disabled = true;
-	      //  document.getElementById('empid').disabled = true;
-        //}
         Eid = doc.id;
         aCheck = 1;
-        //alert(doc.data().GroupReg);
         if(sGroupReg==doc.data().GroupReg) {
           document.getElementById('loading').style.display = 'none';
           document.getElementById('UserNoReg').style.display = 'block';
           document.getElementById('UserYesReg').style.display = 'none';
-          //alert("old");
         } else {
           document.getElementById('loading').style.display = 'none';
           document.getElementById('UserNoReg').style.display = 'none';
           document.getElementById('UserYesReg').style.display = 'block';
-          //alert("old + New");
         }
       });
       if(aCheck==0) {
         document.getElementById('loading').style.display = 'none';
         document.getElementById('UserNoReg').style.display = 'none';
         document.getElementById('UserYesReg').style.display = 'block';
-        //alert("new");
       }
     });
 
@@ -481,12 +445,10 @@ function ClickSaveProfile() {
   if(CheckReq==2) {
     if(document.getElementById("fname").value!="") { var a1 = document.getElementById("fname").value; } else { var a1 = "";}
     if(document.getElementById("empid").value!="") { var a2 = document.getElementById("empid").value; } else { var a2 = "";}
-    //if(document.getElementById("email").value!="") { var a3 = document.getElementById("email").value; } else { var a3 = "";}
     if(document.getElementById("phone").value!="") { var a4 = document.getElementById("phone").value; } else { var a4 = "";}
     if(document.getElementById("br").value!="") { var a5 = document.getElementById("br").value; } else { var a5 = "";}
     if(document.getElementById("rh").value!="") { var a7 = document.getElementById("rh").value; } else { var a7 = "";}
     if(document.getElementById("address").value!="") { var a6 = document.getElementById("address").value; } else { var a6 = "";}
-    //if(document.getElementById("memo").value!="") { var a7 = document.getElementById("memo").value; } else { var a7 = "";}
 
     if(aCheck==1) {
       db.doc(Eid).update({
@@ -502,9 +464,6 @@ function ClickSaveProfile() {
         empAddress : a6,   
         lastcheckin : dateString,
         RegisterDate : dateString
-//        statusconfirm : aStatusConfirm,
-//        statuspass : aStatusPass,
-//        statusedit : aStatusEdit   
       });
       GotoPage = 1;
     } else {
