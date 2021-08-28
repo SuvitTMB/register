@@ -285,7 +285,7 @@
 
   <!-- Template Main JS File 
   <script src="js/config.js"></script>-->
-<script src="./js/session.js?ver=0002"></script>
+<script src="./js/session.js?ver=0003"></script>
 
 <script type="text/javascript">
 
@@ -694,6 +694,12 @@ function NewDate() {
   //console.log(day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm);
 }
 
+function checkZero(data){
+  if(data.length == 1){
+    data = "0" + data;
+  }
+  return data;
+}
 
 </script>
 
