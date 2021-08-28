@@ -439,7 +439,7 @@ function ClickSaveProfile() {
     if(document.getElementById("rh").value!="") { var a7 = document.getElementById("rh").value; } else { var a7 = "";}
     if(document.getElementById("address").value!="") { var a6 = document.getElementById("address").value; } else { var a6 = "";}
     if(a5!="BBD") { a7="Oth"; }
-
+    NewDate();
     if(aCheck==1) {
       db.doc(Eid).update({
         GroupReg : sGroupReg,
@@ -671,6 +671,28 @@ function GotoGame() {
   location.href = "introgame.html";
 }
 
+
+function NewDate() {
+  var today = new Date();
+  var day = today.getDate() + "";
+  var month = (today.getMonth() + 1) + "";
+  var year = today.getFullYear() + "";
+  var hour = today.getHours() + "";
+  var minutes = today.getMinutes() + "";
+  var seconds = today.getSeconds() + "";
+  var ampm = hour >= 12 ? 'PM' : 'AM';
+
+  day = checkZero(day);
+  month = checkZero(month);
+  year = checkZero(year);
+  hour = checkZero(hour);
+  minutes = checkZero(minutes);
+  seconds = checkZero(seconds);
+
+  dateString = day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm;
+  //alert(GetNewDate);
+  //console.log(day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm);
+}
 
 
 </script>
