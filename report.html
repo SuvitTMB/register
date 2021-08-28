@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>LINE Retail Society</title>
+	<meta charset="utf-8">
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<!-- Google Tag Manager -->
+	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+	})(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+	<!-- End Google Tag Manager -->
+
+	<!-- Favicons -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
+  <link href='css/ekachon.css' rel="stylesheet" type="text/css">
+  <link href='css/style.css' rel="stylesheet" type="text/css">
+  <link href='css/button.css' rel="stylesheet" type="text/css">
+  <link href='css/w3.css' rel="stylesheet" type="text/css">
+  <link href='css/app.css' rel="stylesheet" type="text/css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+<!--
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+-->
+	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+  <style type="text/css">
+    .table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {
+      padding:2px;
+    }    
+  </style>
+</head>
+
+<body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60" style="background-color: #f7f7f7;">
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PW7HPDW"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+
+
+  <nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="register.html">Retail Society</a>
+      </div>
+    </div>
+  </nav>
+
+  <main id="main">
+    <section id="team" class="team section-bg">
+      <div class="container-max">
+        <div style="margin-top:80px;text-align: center;color:#000000;font-weight: 600;"><u>ข้อมูลผู้ลงทะเบียนกิจกรรม</u></div>
+        <div style="margin-bottom: 20px;">
+          <center>
+          <div class="btn-t1" onclick="ShowTeam(0)">รวม</div>
+          <div class="btn-t1" onclick="ShowTeam(1)">BBD</div>
+          <div class="btn-t1" onclick="ShowTeam(2)">RASC</div>
+          <div class="btn-t1" onclick="ShowTeam(3)">บางปู</div>
+          <div class="btn-t1" onclick="ShowTeam(4)">OCSE</div>
+          <div class="btn-t1" onclick="ShowTeam(5)">PRODUCT</div>
+          <div class="btn-t1" onclick="ShowTeam(6)">CHIEF</div>
+          <div class="btn-t1" onclick="ShowTeam(7)">Other</div>
+          </center>
+        </div>
+        <div style="width:100%; margin:-20px auto;">
+          <div style="padding:10px;color:#0056ff;">
+            <center>
+              <div class="btn-t2" onclick="GotoMember()">ดูกราฟ</div>
+              <div class="btn-t2" onclick="export2csv()">Download</div>
+            </center>
+          </div>
+          <div id="DisplayTable" style="margin:10px auto;">
+            <center>
+            <table class="table table-bordered" id="tbresult" style="padding:2px;font-size: 12px;width:94%;">
+              <tr>
+                <th width="5%">No</th>
+                <th width="9%">Line Name</th>
+                <th width="5%">ID</th>
+                <th width="25%">Name</th>
+                <th width="20%">Group</th>
+                <th>Under</th>
+              </tr>
+            </table> 
+            </center>     
+          </div>
+          <div class="clr" style="height: 25px;"></div>
+        </div>
+        <div class="clr"></div>
+      </div>
+    </section>
+  </main>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <script src="./js/report.js"></script>
+
+
+</body>
+</html>
