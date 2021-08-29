@@ -94,7 +94,7 @@ function FalseGame(x,y,z) {
 	$("#Displayintromessage").val(cleararray);
 	$("#Displayintromessage").html(cleararray);
 	$("#DisplayLastScore").val(cleararray);
-	textDisplayPoint = "<div class='gameNumber' style='color:#0056ff;font-size:60px;'>"+x+" <span style='color:#f68b1f;'>"+ z +"</span> "+y+"</div><div class='text-false'>คุณทายผลตัวเลขผิด</div>คุณทำคะแนนในเกมส์นี้ได้ = <b>"+ ScorePoint +" คะแนน</b><br>คอยลุ้นรางวัลของคุณน้า";
+	textDisplayPoint = "<div class='gameNumber' style='color:#0056ff;font-size:50px;'>"+x+"<span style='color:#f68b1f;'>"+ z +"</span>"+y+"</div><div class='text-false'>คุณทายผลตัวเลขผิด</div>คุณทำคะแนนในเกมส์นี้ได้ = <b>"+ ScorePoint +" คะแนน</b><br>คอยลุ้นรางวัลของคุณน้า";
 	//textDisplayPoint = "<img src='./img/false.jpg' style='max-width: 120px; margin-bottom: 20px;'><div class='text-false'>คุณทายผลตัวเลขผิด</div>คุณทำคะแนนในเกมส์นี้ได้ = <b>"+ ScorePoint +" คะแนน</b><br>คอยลุ้นรางวัลของคุณน้า";
 	$("#DisplayLastScore").html(textDisplayPoint);
     document.getElementById("id01").style.display = "block";
