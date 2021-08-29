@@ -24,8 +24,6 @@ $(document).ready(function () {
 
 
 function CheckLogin() {
-  //alert(sessionStorage.getItem("LineID"));
-  //alert(sessionStorage.getItem("EmpRH"));
   db.where('LineID','==',sessionStorage.getItem("LineID")).get().then((snapshot)=> {
     snapshot.forEach(doc=> {
       //aCheck = 1;
@@ -54,4 +52,33 @@ function OpenPage() {
 }
 
 
+
+function NewDate() {
+  var today = new Date();
+  var day = today.getDate() + "";
+  var month = (today.getMonth() + 1) + "";
+  var year = today.getFullYear() + "";
+  var hour = today.getHours() + "";
+  var minutes = today.getMinutes() + "";
+  var seconds = today.getSeconds() + "";
+  var ampm = hour >= 12 ? 'PM' : 'AM';
+
+  day = checkZero(day);
+  month = checkZero(month);
+  year = checkZero(year);
+  hour = checkZero(hour);
+  minutes = checkZero(minutes);
+  seconds = checkZero(seconds);
+
+  dateString = day + "/" + month + "/" + (parseInt(year)+543) + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm;
+  //alert(GetNewDate);
+  //console.log(day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm);
+}
+
+function checkZero(data){
+  if(data.length == 1){
+    data = "0" + data;
+  }
+  return data;
+}
 

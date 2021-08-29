@@ -1,12 +1,5 @@
 var cleararray = "";
-/*
-var getNumber1 = 0;
-var getNumber2 = 0;
-var getNumber3 = 0;
-var RoundNumber1 = 0;
-var RoundNumber2 = 0;
-var RoundNumber3 = 0;
-*/
+var Eid = "";
 var EndGame = 0;
 var RoundNumber = 0;
 var getNumberStart = 0;
@@ -20,21 +13,81 @@ var CheckPoint = 0;
 var intromessage = '<div class="text-score">เลือกตัวเลข 1-10 ตัวต่อไปว่าจะ น้อยกว่า | เท่ากับ | มากกว่า</div>';
 var intwarning = '<div class="text-warning">คำเตือน<br>หากคุณออกจากหน้านี้ก่อนการตอบคำถามจะสิ้นสุด<br>คุณจะได้ 0 คะแนน และไม่สามารถเข่งขันเกมส์นี้ในวันนี้ได้อีก</div>';
 
+var sGroupGame = "Game1";
+var dateString = new Date().toLocaleString('en-US', { timeZone: 'Asia/Jakarta' });
+
+
+var firebaseConfig = {
+  apiKey: "AIzaSyDfTJJ425U4OY0xac6jdhtSxDeuJ-OF-lE",
+  authDomain: "retailproject-6f4fc.firebaseapp.com",
+  projectId: "retailproject-6f4fc",
+  storageBucket: "retailproject-6f4fc.appspot.com",
+  messagingSenderId: "653667385625",
+  appId: "1:653667385625:web:a5aed08500de80839f0588",
+  measurementId: "G-9SKTRHHSW9"
+};
+
+firebase.initializeApp(firebaseConfig);
+var db = firebase.firestore().collection("GameScore");
+
+
 
 $(document).ready(function () {
 	if(sessionStorage.getItem("ShowYourScore")!=null) {
 		window.location.href='introgame.html';
 	}
+	CheckLogin();
+    //document.getElementById("id04").style.display = "block";
+	//$("#Displayintromessage").html(intromessage);
+	//$("#DisplayWarning").html(intwarning);
+	//BoxNumber();
+	//StartNumber();
+});
+
+
+function CheckLogin() {
+  db.where('LineID','==',sessionStorage.getItem("LineID")).get().then((snapshot)=> {
+    snapshot.forEach(doc=> {
+      alert("คุณได้เข้าร่วมเกมส์นี้ไปแล้ว");
+      window.location.href='introgame.html';
+    });
+    AddNewRecord();
+  });
+}
+
+
+function AddNewRecord() {
+	AddRec();
     document.getElementById("id04").style.display = "block";
 	$("#Displayintromessage").html(intromessage);
 	$("#DisplayWarning").html(intwarning);
 	BoxNumber();
 	StartNumber();
-});
 
+}
+
+
+function AddRec() {
+  NewDate();
+  var TimeStamp = Math.round(Date.now() / 1000);
+  db.add({
+    GroupGame : sGroupGame,
+    LineID : sessionStorage.getItem("LineID"),
+    Linename : sessionStorage.getItem("LineName"),
+    LinePicture : sessionStorage.getItem("LinePicture"),
+    empID : sessionStorage.getItem("EmpID"),
+    empName : sessionStorage.getItem("EmpName"),
+    empBr : sessionStorage.getItem("EmpBR"),
+	YourScore : ScorePoint,
+    RegDate : dateString,
+    TimeStampOIn : TimeStamp
+  });
+  //alert("new Rec");
+}
 
 
 function FalseGame() {
+	UpdateScore();
 	$("#DisplayWarning").html(cleararray);
 	$("#DisplayMessage").val(cleararray);
 	$("#DisplayMessage").html(cleararray);
@@ -46,6 +99,24 @@ function FalseGame() {
     document.getElementById("id01").style.display = "block";
 }
 
+
+function UpdateScore() {
+  NewDate();
+  var TimeStamp = Math.round(Date.now() / 1000);
+  db.where('LineID','==',sessionStorage.getItem("LineID")).get().then((snapshot)=> {
+    snapshot.forEach(doc=> {
+      Eid = doc.id;
+	  db.doc(Eid).update({
+	    YourScore : ScorePoint,
+	    EndGameDate : dateString,
+	    TimeStampOut : TimeStamp,
+	    LogGame : LogGame
+	  });  
+      sessionStorage.setItem("ShowYourScore", ScorePoint);
+    });
+  });	
+	
+}
 
 
 function TrueGame() {
@@ -119,16 +190,16 @@ function DisplayRound() {
 	}
 	$("#DisplayRound").html(str);
 
-	RandomNumber();
-	alert(getNumberStart+"---"+RoundNumberRandom);
+	//RandomNumber();
+	//alert(getNumberStart+"---"+RoundNumberRandom);
 }
 
 
 
 function SendNumber(r,s,n) {
+	RandomNumber();
 	$("#DisplayScore").val(cleararray);
 	$("#DisplayMessage").val(cleararray);
-	//RandomNumber();
 	//alert(getNumberStart+"---"+RoundNumberRandom);
 	//alert(r+"==="+s+"==="+n)
 	var str = "";
@@ -138,7 +209,7 @@ function SendNumber(r,s,n) {
 	if(n==2) { ntext = "เท่ากับ"; } else
 	if(n==3) { ntext = "มากกว่า"; } 
 	LogGame = LogGame + " | " + ntext + " " + RoundNumberRandom; 
-	alert(LogGame);
+	//alert(LogGame);
 	if(n==1) { 
 		if(RoundNumberRandom<getNumberStart) { textmessage="คุณเลือกได้ถูกต้อง" ; ScorePoint = ScorePoint+1; CheckPoint = CheckPoint+1; }
 		else { textmessage="คุณตอบข้อนี้ผิด"; EndGame=1; FalseGame(); }
@@ -182,4 +253,34 @@ function BoxNumber() {
 
 function LinkMainPage(){
 	window.location.href='introgame.html';
+}
+
+
+function NewDate() {
+  var today = new Date();
+  var day = today.getDate() + "";
+  var month = (today.getMonth() + 1) + "";
+  var year = today.getFullYear() + "";
+  var hour = today.getHours() + "";
+  var minutes = today.getMinutes() + "";
+  var seconds = today.getSeconds() + "";
+  var ampm = hour >= 12 ? 'PM' : 'AM';
+
+  day = checkZero(day);
+  month = checkZero(month);
+  year = checkZero(year);
+  hour = checkZero(hour);
+  minutes = checkZero(minutes);
+  seconds = checkZero(seconds);
+
+  dateString = day + "/" + month + "/" + (parseInt(year)+543) + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm;
+  //alert(GetNewDate);
+  //console.log(day + "/" + month + "/" + year + " " + hour + ":" + minutes + ":" + seconds +" "+ ampm);
+}
+
+function checkZero(data){
+  if(data.length == 1){
+    data = "0" + data;
+  }
+  return data;
 }
