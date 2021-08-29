@@ -23,14 +23,15 @@ $(document).ready(function () {
 
 
 
-function FalseGame() {
+function FalseGame(x,y,z) {
 	$("#DisplayWarning").html(cleararray);
 	$("#DisplayMessage").val(cleararray);
 	$("#DisplayMessage").html(cleararray);
 	$("#Displayintromessage").val(cleararray);
 	$("#Displayintromessage").html(cleararray);
 	$("#DisplayLastScore").val(cleararray);
-	textDisplayPoint = "<img src='./img/false.jpg' style='max-width: 120px; margin-bottom: 20px;'><div class='text-false'>คุณทายผลตัวเลขผิด</div>คุณทำคะแนนในเกมส์นี้ได้ = <b>"+ ScorePoint +" คะแนน</b><br>คอยลุ้นรางวัลของคุณน้า";
+	//textDisplayPoint = "<img src='./img/false.jpg' style='max-width: 120px; margin-bottom: 20px;'><div class='text-false'>คุณทายผลตัวเลขผิด</div>คุณทำคะแนนในเกมส์นี้ได้ = <b>"+ ScorePoint +" คะแนน</b><br>คอยลุ้นรางวัลของคุณน้า";
+	textDisplayPoint = "<div class='gameNumber' style='color:#0056ff;'>"+x+" <span style='color:#f68b1f;'>"+ z +"</span> "+y+"</div><div class='text-false'>คุณทายผลตัวเลขผิด</div>คุณทำคะแนนในเกมส์นี้ได้ = <b>"+ ScorePoint +" คะแนน</b><br>คอยลุ้นรางวัลของคุณน้า";
 	$("#DisplayLastScore").html(textDisplayPoint);
     document.getElementById("id01").style.display = "block";
 }
@@ -98,7 +99,7 @@ function DisplayRound() {
 	$("#DisplayRound").val(cleararray);
 	var str = "";
 	if(EndGame==0) {
-		str+='<div style="width:65%;margin:auto;">';
+		str+='<div style="width:70%;margin:auto;">';
 		str+='<div class="col-sm-4 game2-box1" onclick="SendNumber('+RoundNumber+','+ getNumberStart +',1)"><div class="game-a3"><</div><div class="game-a4">น้อยกว่า</div></div>';
 		str+='<div class="col-sm-4 game2-box1" onclick="SendNumber('+RoundNumber+','+ getNumberStart +',2)"><div class="game-a3">=</div><div class="game-a4">เท่ากับ</div></div>';
 		str+='<div class="col-sm-4 game2-box1" onclick="SendNumber('+RoundNumber+','+ getNumberStart +',3)"><div class="game-a3">></div><div class="game-a4">มากกว่า</div></div>';
@@ -121,22 +122,22 @@ function SendNumber(r,s,n) {
 	var str = "";
 	var str0 = "";
 	var ntext = "";
-	if(n==1) { ntext = "น้อยกว่า"; } else
-	if(n==2) { ntext = "เท่ากับ"; } else
-	if(n==3) { ntext = "มากกว่า"; } 
-	LogGame = LogGame + " | " + ntext + " " + RoundNumberRandom; 
-	//alert(LogGame);
+	var xtext = "";
+	if(n==1) { ntext = "น้อยกว่า"; xtext = "<"; } else
+	if(n==2) { ntext = "เท่ากับ"; xtext = "="; } else
+	if(n==3) { ntext = "มากกว่า"; xtext = ">"; } 
+	LogGame = LogGame + " | " + xtext + " " + RoundNumberRandom; 
 	if(n==1) { 
 		if(RoundNumberRandom<getNumberStart) { textmessage="คุณเลือกได้ถูกต้อง" ; ScorePoint = ScorePoint+1; CheckPoint = CheckPoint+1; }
-		else { textmessage="คุณตอบข้อนี้ผิด"; EndGame=1; FalseGame(); }
+		else { textmessage="คุณตอบข้อนี้ผิด"; EndGame=1; FalseGame(getNumberStart,RoundNumberRandom,xtext); }
 	}
 	if(n==2) { 
 		if(RoundNumberRandom==getNumberStart) { textmessage="คุณเลือกได้ถูกต้อง" ; ScorePoint = ScorePoint+1; ExtraGame(); CheckPoint = CheckPoint+1; } 
-		else { textmessage="คุณตอบข้อนี้ผิด"; EndGame=1; FalseGame(); }
+		else { textmessage="คุณตอบข้อนี้ผิด"; EndGame=1; FalseGame(getNumberStart,RoundNumberRandom,xtext); }
 	} 
 	if(n==3) { 
 		if(RoundNumberRandom>getNumberStart) { textmessage="คุณเลือกได้ถูกต้อง" ; ScorePoint = ScorePoint+1; CheckPoint = CheckPoint+1; } 
-		else { textmessage="คุณตอบข้อนี้ผิด"; EndGame=1; FalseGame(); }
+		else { textmessage="คุณตอบข้อนี้ผิด"; EndGame=1; FalseGame(getNumberStart,RoundNumberRandom,xtext); }
 	}
 	getNumberStart = RoundNumberRandom;
 	$("#DisplayNumber").val(cleararray);
