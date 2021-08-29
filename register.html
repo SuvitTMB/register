@@ -32,11 +32,11 @@
   <link href='css/app.css' rel="stylesheet" type="text/css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-	<script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
+<!--
+-->
+  <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
 	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
-
   <style type="text/css">
     .AgendaTD {
       padding:4px 8px; background:#ffffff; border:1px solid #ccc;
@@ -95,6 +95,34 @@
                       <a href="#TopAgenda" style="text-decoration: none;"><div onclick="ClickAgenda()"><img src="./img/icon-agenda.png" style="height: 60px;"><br>กำหนดการ</div></a>
                     </div>
                     <div class="col-xs-6 boxmenu">
+                      <a href="#TopReward" style="text-decoration: none;"><div onclick="ClickReward()"><img src="./img/icon-reward.png" style="height: 60px;"><br>ลุ้นรางวัล</div></a>
+                    </div>    
+                    <div class="col-xs-6 boxmenu">
+                      <div onclick="window.location.href='qa.html';"><img src="./img/icon-qa.png" style="height: 60px;"><br>แจ้งปัญหา</div>
+                    </div> 
+                    <div class="col-xs-6 boxmenu">
+                      <a href="#TopQRcode" style="text-decoration: none;"><div onclick="ClickQRcode()"><img src="./img/icon-qrcode.png" style="height: 60px;"><br>สแกนเข้างาน</div></a>
+                    </div>    
+                    <div class="col-xs-6 boxmenu">
+                      <a href="#TopSurvey" style="text-decoration: none;"><div onclick="ClickSurvey()"><img src="./img/icon-servey.png" style="height: 60px;"><br>ประเมินผล</div></a>
+                    </div> 
+<!--
+                    <div class="col-xs-6 boxmenu">
+                      <div onclick="window.location.href='member.html';"><img src="./img/icon-report.png" style="height: 60px;"><br>Report</div>
+                    </div> 
+-->
+                  </div>
+                  <div class="clr" style="height:20px;"></div>
+                  </center>
+<!--
+                  <div style="max-width:400px; width:100%; margin:auto;padding-top:20px;">
+                    <div class="col-xs-6 boxmenu">
+                      <div onclick="ClickCheckLogin()"><img src="./img/icon-profile.png" style="height: 60px;"><br>แก้ไขข้อมูล</div>
+                    </div>
+                    <div class="col-xs-6 boxmenu">
+                      <a href="#TopAgenda" style="text-decoration: none;"><div onclick="ClickAgenda()"><img src="./img/icon-agenda.png" style="height: 60px;"><br>กำหนดการ</div></a>
+                    </div>
+                    <div class="col-xs-6 boxmenu">
                       <div onclick="window.location.href='qa.html';"><img src="./img/icon-cong.png" style="height: 60px;"><br>ร่วมชื่นชม</div>
                     </div> 
                     <div class="col-xs-6 boxmenu">
@@ -113,8 +141,7 @@
                       <div onclick="window.location.href='member.html';"><img src="./img/icon-report.png" style="height: 60px;"><br>Report</div>
                     </div> 
                   </div>
-                  <div class="clr" style="height:20px;"></div>
-                  </center>
+-->
                 </div>
               </div>
               <div style="margin-top:30px;font-size:10px;color:#555555;margin-bottom: 20px;font-weight: 700;">@LINE Retail Socitey</div>
@@ -142,7 +169,6 @@
             <p id="fname_req" style="color:#ff0000;"></p>
             <div>โทรศัพท์มือถือ</div>
             <div style="color:#0056ff;"><input type="text" name="phone" id="phone" pattern="[+-]?[0-9]"></div>
-            <!--<p id="phone_req" style="color:#ff0000;"></p>-->
             <div>สังกัดหน่วยงาน</div>
             <div style="color:#0056ff;">
               <select name="cars" id="br">
@@ -187,12 +213,16 @@
       </div>
 
 
-      <div id="TopAgenda"></div>
-      <div class="container" id="ViewAgenda" style="display: none;background:#ffffff;margin-bottom: 50px;width:95%;border-radius: 15px;">
+      <div id="TopAgenda" style="height: 30px;"></div>
+      <div class="container" id="ViewAgenda" style="display: none;background:#ffffff;margin-bottom: 50px;width:95%;border-radius: 15px;margin-top:50px;">
         <div class="section-title" data-aos="fade-up">
           <center>
-          <div style="font-size: 16px;margin-top:50px;font-weight: 600;color:#000;">กำหนดการประชุม</div>
+            <div style="font-size: 16px;font-weight: 600;color:#000;">กำหนดการประชุม</div>
+            <div style="max-width: 380px;margin-top:20px;">
+              <img src="./img/photo.jpg" style="width:100%;">
+            </div>
           </center>
+          <!--
           <div style="color:#000000;text-align: left;padding:5px 30px;margin-top:15px;font-size:12px;">
             <div class="col-xs-3 AgendaTD">16:45 - 17:00</div>
             <div class="col-xs-9 AgendaTD">Start Live Broadcast</div>
@@ -219,6 +249,7 @@
             <div class="col-xs-3 AgendaTD">21:00</div>
             <div class="col-xs-9 AgendaTD">Conclusion by MC</div>
           </div>
+          -->
           <div class="clr" style="height: 20px;"></div>
           <center>
             <a href="#myPage"><div class="btn-t1" onclick="CloseAgenda()">Close</div></a>
@@ -228,12 +259,49 @@
       </div>
 
 
-      <div id="TopQRcode"></div>
-      <div class="container" id="ViewQRcode" style="display: none;background:#ffffff;margin-bottom: 50px;width:95%;border-radius: 15px;">
+      <div id="TopQRcode" style="height: 30px;"></div>
+      <div class="container" id="ViewQRcode" style="display: none;background:#ffffff;margin-top:50px;margin-bottom: 50px;width:95%;border-radius: 15px;">
         <div class="section-title" data-aos="fade-up">
           <center>
-            <div style="font-size: 16px;margin-top:50px;font-weight: 600;color:#000;">บอกเพื่อนลงทะเบียน<br>สแกนเข้าร่วมงานได้ ... ที่นี่</div>
+            <div style="font-size: 16px;font-weight: 600;color:#000;">บอกเพื่อนลงทะเบียน<br>สแกนเข้าร่วมงานได้ ... ที่นี่</div>
             <div style="margin-top:20px;"><img src="./img/ScanMe.png"></div>
+          </center>
+          <div class="clr" style="height: 20px;"></div>
+          <center>
+            <a href="#myPage"><div class="btn-t1" onclick="CloseAgenda()">Close</div></a>
+          </center>
+        </div>
+        <div class="clr" style="height: 200px;"></div>
+      </div>
+
+
+
+      <div id="TopSurvey" style="height: 30px;"></div>
+      <div class="container" id="ViewSurvey" style="display: none;background:#ffffff;margin-top:50px;margin-bottom: 50px;width:95%;border-radius: 15px;">
+        <div class="section-title" data-aos="fade-up">
+          <center>
+            <div style="font-size: 16px;font-weight: 600;color:#000;">แบบประเมินผลการเข้าร่วมกิจกรรม<br>กรุณาตอบแบบสอบถาม<font color="#f68b1f">หลังจบงาน</font></div>
+            <div style="margin-top:20px;"><img src="./img/AllAward_Survey.png"></div>
+            <a href="https://forms.gle/CsSciGc3zDCeuE3V7" target="_blank" style="text-decoration: none;"><div class="btn-t2">คลิกที่นี่เพื่อตอบแบบสอบถาม<br>กรุณาตอบแบบสอนถามหลังงานจบ</div></a>
+          </center>
+          <div class="clr" style="height: 20px;"></div>
+          <center>
+            <a href="#myPage"><div class="btn-t1" onclick="CloseAgenda()">Close</div></a>
+          </center>
+        </div>
+        <div class="clr" style="height: 170px;"></div>
+      </div>
+
+
+
+      <div id="TopReward" style="height: 30px;"></div>
+      <div class="container" id="ViewReward" style="display: none;background:#ffffff;margin-bottom: 50px;width:95%;border-radius: 15px;margin-top:50px;">
+        <div class="section-title" data-aos="fade-up">
+          <center>
+            <div style="font-size: 16px;font-weight: 600;color:#000;">เตรียมลุ้นรางวัล Lucky Draw</div>
+            <div style="max-width: 380px;margin-top:20px;">
+              <img src="./img/photo.jpg" style="width:100%;">
+            </div>
           </center>
           <div class="clr" style="height: 20px;"></div>
           <center>
@@ -243,41 +311,6 @@
         <div class="clr" style="height: 60px;"></div>
       </div>
 
-
-
-      <div id="TopSurvey"></div>
-      <div class="container" id="ViewSurvey" style="display: none;background:#ffffff;margin-bottom: 50px;width:95%;border-radius: 15px;">
-        <div class="section-title" data-aos="fade-up">
-          <center>
-            <div style="font-size: 16px;margin-top:50px;font-weight: 600;color:#000;">แบบประเมินผลการเข้าร่วมกิจกรรม<br>กรุณาตอบแบบสอบถาม<font color="#f68b1f">หลังจบงาน</font></div>
-            <div style="margin-top:20px;"><img src="./img/AllAward_Survey.png"></div>
-            <a href="https://forms.gle/CsSciGc3zDCeuE3V7" target="_blank" style="text-decoration: none;"><div class="btn-t2">คลิกที่นี่เพื่อตอบแบบสอบถาม<br>กรุณาตอบแบบสอนถามหลังงานจบ</div></a>
-          </center>
-          <div class="clr" style="height: 20px;"></div>
-          <center>
-            <a href="#myPage"><div class="btn-t1" onclick="CloseAgenda()">Close</div></a>
-          </center>
-        </div>
-        <div class="clr" style="height: 100px;"></div>
-      </div>
-
-      <div class="container" id="DisplayList" style="display: none;margin-bottom: 50px;">
-        <!--<section id="team" class="team section-bg" style="background-color: #ffffff;min-height:450px;">-->
-          <div class="container">
-            <center style="padding:15px; color:#000; font-weight: 600;">ข้อมูลรายชื่อพนักงานสังกัด OCSE</center>
-            <table class="table table-bordered" id="tbresult" style="padding:2px;">
-              <tr>
-                <th width="10%" style="text-align: center;">No</th>
-                <th width="15%" style="text-align: center;">Picture</th>
-                <th width="75%" style="text-align: center;">LineName / UserName</th>
-              </tr>
-            </table>
-            <div style="padding:10px;color:#ccc;cursor: pointer;"><span class="LoadCSV" onclick="export2csv()">Download CSV File</span></center></div>
-          </div>
-        <!--</section>-->
-      </div>
-
-
     </section>
   </main>
   </div>
@@ -285,7 +318,7 @@
 
   <!-- Template Main JS File 
   <script src="js/config.js"></script>-->
-<script src="./js/session.js?ver=0005"></script>
+<script src="./js/session.js?ver=0001"></script>
 
 <script type="text/javascript">
 
@@ -345,8 +378,16 @@
   firebase.initializeApp(firebaseConfig);
   var db = firebase.firestore().collection("CheckProfile");
 
+  //ReadData();
+
+
+
   function ClickAgenda() {
     document.getElementById('ViewAgenda').style.display='block';
+  }
+
+  function ClickReward() {
+    document.getElementById('ViewReward').style.display='block';
   }
 
 
@@ -366,6 +407,7 @@
     document.getElementById('ViewAgenda').style.display='none';
     document.getElementById('ViewQRcode').style.display='none';
     document.getElementById('ViewSurvey').style.display='none';
+    document.getElementById('ViewReward').style.display='none';
 		ReadData();
 	}
   //ReadData();
@@ -504,6 +546,7 @@ function CloseAgenda() {
     document.getElementById('ViewQRcode').style.display='none';
     document.getElementById('ViewAgenda').style.display='none';
     document.getElementById('ViewSurvey').style.display='none';
+    document.getElementById('ViewReward').style.display='none';
 }
 
 function GotoWeb() {
