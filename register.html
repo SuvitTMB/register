@@ -353,6 +353,7 @@
     sessionStorage.setItem("LineID", profile.userId);
     sessionStorage.setItem("LineName", profile.displayName);
     sessionStorage.setItem("LinePicture", profile.pictureUrl);
+    sendMsg();
     ReadData();
   }
 
@@ -362,6 +363,20 @@
       url: "https://line.me",
       external: true     
     })
+  }
+
+
+  async function sendMsg() {
+   if(liff.getContext().type !== "none" {
+    await liff.sendMessages([
+      {
+         "type": "sticker",
+         "stickerId": 1,
+         "packageId"; 1
+      }
+    ])
+    alert("Message sent")
+   }
   }
 
 
