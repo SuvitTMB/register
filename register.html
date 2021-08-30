@@ -310,6 +310,7 @@
           <div class="clr" style="height: 60px;"></div>
         </div>
       </div>
+      <div id="type">...</div>
 
     </section>
   </main>
@@ -353,6 +354,7 @@
     sessionStorage.setItem("LineID", profile.userId);
     sessionStorage.setItem("LineName", profile.displayName);
     sessionStorage.setItem("LinePicture", profile.pictureUrl);
+    getContext();
     sendMsg();
     ReadData();
   }
@@ -366,7 +368,13 @@
   }
 
 
+function getContext() {
+  document.getElementById("type").append(liff.getContext().type);
+}
+
+
   async function sendMsg() {
+    alert(liff.getContext().type);
    if(liff.getContext().type !== "none") {
     await liff.sendMessages([
       {
