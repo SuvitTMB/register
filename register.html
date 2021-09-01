@@ -3,19 +3,19 @@
 
 <head>
   <title>LINE Retail Society</title>
-	<meta charset="utf-8">
+  <meta charset="utf-8">
   <meta content="" name="description">
   <meta content="" name="keywords">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<!-- Google Tag Manager -->
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
-	<!-- End Google Tag Manager -->
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PW7HPDW');</script>
+  <!-- End Google Tag Manager -->
 
-	<!-- Favicons -->
+  <!-- Favicons -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
   new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
   j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
@@ -35,8 +35,8 @@
 <!--
 -->
   <script src="https://static.line-scdn.net/liff/edge/versions/2.12.0/sdk.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
-	<script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.5.0/firebase-firestore.js"></script>
   <style type="text/css">
     .AgendaTD {
       padding:4px 8px; background:#ffffff; border:1px solid #ccc;
@@ -310,7 +310,6 @@
           <div class="clr" style="height: 60px;"></div>
         </div>
       </div>
-      <div id="type">...</div>
 
     </section>
   </main>
@@ -319,7 +318,7 @@
 
   <!-- Template Main JS File 
   <script src="js/config.js"></script>-->
-<script src="./js/session.js?ver=0004"></script>
+<script src="./js/session.js?ver=0002"></script>
 
 <script type="text/javascript">
 
@@ -354,8 +353,6 @@
     sessionStorage.setItem("LineID", profile.userId);
     sessionStorage.setItem("LineName", profile.displayName);
     sessionStorage.setItem("LinePicture", profile.pictureUrl);
-    getContext();
-    sendMsg();
     ReadData();
   }
 
@@ -365,26 +362,6 @@
       url: "https://line.me",
       external: true     
     })
-  }
-
-
-function getContext() {
-  document.getElementById("type").append(liff.getContext().type);
-}
-
-
-  async function sendMsg() {
-    alert(liff.getContext().type);
-   if(liff.getContext().type !== "none") {
-    await liff.sendMessages([
-      {
-         "type": "sticker",
-         "stickerId": 1,
-         "packageId": 1
-      }
-    ])
-    alert("Message sent");
-   }
   }
 
 
@@ -424,15 +401,15 @@ function getContext() {
   }
 
 
-	function ClickCheckLogin() {
-		document.getElementById('CheckProfile').style.display='block';
+  function ClickCheckLogin() {
+    document.getElementById('CheckProfile').style.display='block';
     document.getElementById('CheckLogin').style.display='none';
     document.getElementById('ViewAgenda').style.display='none';
     document.getElementById('ViewQRcode').style.display='none';
     document.getElementById('ViewSurvey').style.display='none';
     document.getElementById('ViewReward').style.display='none';
-		ReadData();
-	}
+    ReadData();
+  }
   //ReadData();
 
 
